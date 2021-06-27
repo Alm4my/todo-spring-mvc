@@ -5,8 +5,8 @@
         </encoder>
     </appender>
 
-    <logger name="fr.almamy" level="TRACE"/>
-    <logger name="org.springframework" level="TRACE"/>
+    <logger name="fr.almamy" level="DEBUG"/>
+    <logger name="org.springframework" level="DEBUG"/>
 
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
