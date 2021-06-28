@@ -10,7 +10,15 @@ public class DemoController {
     // http://localhost:8080/todo-list/hello
     @GetMapping("/hello")
     @ResponseBody
-    public String Hello(){
+    public String hello(){
         return "Hello";
+    }
+
+    // http://localhost:8080/todo-list/welcome
+    // prefix + name + suffix
+    // /WEB-INF/view/welcome.jsp <-- view resolver result
+    @GetMapping("welcome")
+    public String welcome(){
+        return "welcome";
     }
 }
