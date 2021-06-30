@@ -1,6 +1,8 @@
 package fr.almamy.controller;
 
+import fr.almamy.service.DemoService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +12,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Slf4j
 @Controller
 public class DemoController {
+    // == Fields ==
+    private final DemoService demoService;
 
+    // == Constructors ==
+    @Autowired
+    public DemoController(DemoService demoService) {
+        this.demoService = demoService;
+    }
+
+    // == Request Methods ==
     // http://localhost:8080/todo-list/hello
     @GetMapping("/hello")
     @ResponseBody
@@ -21,7 +32,7 @@ public class DemoController {
     // http://localhost:8080/todo-list/welcome
     @GetMapping("welcome")
     public String welcome(Model model){
-        model.addAttribute("user", "Tim");
+        model.addAttribute("helloMessage", demoService.getHelloMessage("Tim"));
         log.info("model = {}", model);
 
         // prefix + name + suffix
@@ -29,10 +40,12 @@ public class DemoController {
         return "welcome";
     }
 
+    // == Model Attributes ==
     @ModelAttribute("welcomeMessage")
     public String welcomeMessage(){
         log.info("welcomeMessage() called");
 
-        return "Welcome to this Demo.";
+        return demoService.getWelcomeMessage();
     }
+
 }
