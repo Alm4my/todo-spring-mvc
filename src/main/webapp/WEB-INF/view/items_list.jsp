@@ -4,6 +4,22 @@
     <title>Todo Items</title>
 </head>
 <body>
+    <div align="center">
+        <table border="1" cellpadding="5">
+            <caption><h2>Todo Items</h2></caption>
+            <tr>
+                <td> Title </td>
+                <td> Deadline </td>
+            </tr>
 
+            <jsp:useBean id="todoData" scope="request" type="fr.almamy.model.TodoData"/>
+            <c:forEach var="item" items="${todoData.items}">
+                <tr>
+                    <td> <c:out value="${item.title}" /> </td>
+                    <td> <c:out value="${item.deadline}" /> </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
 </body>
 </html>
