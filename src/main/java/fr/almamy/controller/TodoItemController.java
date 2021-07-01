@@ -33,6 +33,4 @@ public class TodoItemController {
     public String items(){
         return ViewNames.ITEMS_LIST;
     }
-
-
 }
