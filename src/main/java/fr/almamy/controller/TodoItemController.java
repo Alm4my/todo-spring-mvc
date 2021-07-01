@@ -59,7 +59,11 @@ public class TodoItemController {
     @PostMapping(Mappings.ADD_ITEM)
     public String processItem(@ModelAttribute(AttributeNames.TODO_ITEM) TodoItem todoItem){
         log.info("todoItem from form = {}", todoItem);
-        todoItemService.addItem(todoItem);
+        if (todoItem.getId() == 0)
+            todoItemService.addItem(todoItem);
+        else
+            todoItemService.updateItem(todoItem);
+
         return "redirect:/" + Mappings.ITEMS;
     }
 
