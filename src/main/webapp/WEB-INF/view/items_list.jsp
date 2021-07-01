@@ -15,6 +15,7 @@
             <tr>
                 <td> Title </td>
                 <td> Deadline </td>
+                <td> Edit </td>
                 <td> Delete </td>
             </tr>
 
@@ -23,6 +24,13 @@
                 <tr>
                     <td> <c:out value="${item.title}" /> </td>
                     <td> <c:out value="${item.deadline}" /> </td>
+                    <td>
+                        <c:url var="editURL" value="${Mappings.ADD_ITEM}" >
+                            <c:param name="id" value="${item.id}" />
+                        </c:url>
+
+                        <a href="${editURL}">Edit</a>
+                    </td>
                     <td>
                         <c:url var="deleteURL" value="${Mappings.DELETE_ITEM}" >
                             <c:param name="id" value="${item.id}" />
