@@ -44,8 +44,14 @@ public class TodoItemController {
     }
 
     @GetMapping(Mappings.ADD_ITEM)
-    public String addEdit(Model model){
-        var todoItem = new TodoItem("", "", LocalDateTime.now());
+    public String addEdit(@RequestParam(required = false, defaultValue = "-1") int id,
+                          Model model){
+        log.info("Editing id = {}", id);
+        var todoItem = todoItemService.getItem(id);
+
+        if (todoItem == null)
+            todoItem = new TodoItem("", "", LocalDateTime.now());
+
         model.addAttribute(AttributeNames.TODO_ITEM, todoItem);
         return ViewNames.ADD_ITEM;
     }
