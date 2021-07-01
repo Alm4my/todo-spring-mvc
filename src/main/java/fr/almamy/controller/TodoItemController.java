@@ -69,8 +69,16 @@ public class TodoItemController {
 
     @GetMapping(Mappings.DELETE_ITEM)
     public String deleteItem(@RequestParam int id){
-        log.info("Deleting item with id {}", id);
+        log.info("Deleting item with id = {}", id);
         todoItemService.removeItem(id);
         return "redirect:/" + Mappings.ITEMS;
+    }
+
+    @GetMapping(Mappings.VIEW_ITEM)
+    public String viewItem(@RequestParam int id, Model model){
+        log.info("Viewing item with id = {}", id);
+        var todoItem = todoItemService.getItem(id);
+        model.addAttribute("todoItem", todoItem);
+        return ViewNames.EDIT_ITEM;
     }
 }
