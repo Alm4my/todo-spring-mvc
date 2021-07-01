@@ -1,6 +1,7 @@
 package fr.almamy.controller;
 
 import fr.almamy.model.TodoData;
+import fr.almamy.model.TodoItem;
 import fr.almamy.service.TodoItemService;
 import fr.almamy.util.Mappings;
 import fr.almamy.util.ViewNames;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class TodoItemController {
@@ -32,5 +34,10 @@ public class TodoItemController {
     @GetMapping(Mappings.ITEMS)
     public String items(){
         return ViewNames.ITEMS_LIST;
+    }
+
+    @PostMapping(Mappings.ADD_ITEM)
+    public String processItem(@ModelAttribute TodoItem todoItem){
+        return "redirect:/" + Mappings.ITEMS;
     }
 }
