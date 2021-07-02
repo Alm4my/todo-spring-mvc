@@ -79,6 +79,6 @@ public class TodoItemController {
         log.info("Viewing item with id = {}", id);
         var todoItem = todoItemService.getItem(id);
         model.addAttribute("todoItem", todoItem);
-        return ViewNames.EDIT_ITEM;
+        return ViewNames.VIEW_ITEM;
     }
 }
